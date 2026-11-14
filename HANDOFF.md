@@ -18,15 +18,14 @@ comics, novels and documents in other languages.
 
 ## State right now
 
-- All source code is written. Nothing has been built into an APK yet.
-- It has NEVER run on a phone.
-- Checked: all Kotlin compiles with kotlinc 2.0.21 against the real
-  android.jar (API 34).
-- Not checked: the ML Kit calls. They were compiled against hand-written
-  stand-ins, because the real libraries could not be downloaded where the
-  code was written. Treat every ML Kit signature as unverified.
-- Not checked: resources (no aapt run), the Gradle build, the GitHub workflow.
-- The folder has no git history in the zip. Start a fresh repo.
+- Update 14 Nov 2026: the repo is https://github.com/zimshub/bubble-translate
+  (public). The first GitHub build passed with no code changes, so the real
+  ML Kit libraries, the resources and the workflow all check out. The APK
+  (about 53 MB) is at
+  https://github.com/zimshub/bubble-translate/releases/download/latest/BubbleTranslate.apk
+- It has NOT yet run on a phone. Steps 1 to 3 below are done; step 4 is next.
+- Local copy on Zim's PC: C:\Users\ozumb\BubbleTranslate. That PC has no
+  Java, Gradle or Android SDK, so build through GitHub.
 
 ## What to do next
 
