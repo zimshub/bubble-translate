@@ -37,6 +37,16 @@ jobs:
           BT="$ANDROID_HOME/build-tools/$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
           "$BT/apksigner" verify --verbose --print-certs BubbleTranslate.apk
           "$BT/aapt2" dump badging BubbleTranslate.apk | head -20
+          SIZE=$(stat -c %s BubbleTranslate.apk)
+          SHA=$(sha256sum BubbleTranslate.apk | cut -d' ' -f1)
+          {
+            echo "Version: $GITHUB_SHA"
+            echo "Size: $SIZE bytes ($((SIZE / 1048576)) MB)"
+            echo "SHA-256: $SHA"
+            echo
+            echo "If the file on your phone is smaller than this, the download broke. Delete it and download again."
+          } > release-notes.txt
+          cat release-notes.txt
 
       - uses: actions/upload-artifact@v4
         with:
@@ -50,4 +60,5 @@ jobs:
           tag_name: latest
           name: Latest build
           files: BubbleTranslate.apk
+          body_path: release-notes.txt
           make_latest: true

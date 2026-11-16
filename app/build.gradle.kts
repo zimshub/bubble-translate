@@ -11,8 +11,8 @@ android {
         applicationId = "com.zim.bubbletranslate"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.1"
+        versionCode = 2
+        versionName = "0.2"
         // Phones only (no emulator/x86 builds). Keeps the APK smaller.
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
     }
@@ -25,6 +25,11 @@ android {
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"
+            // Sign in all three formats. Android 7+ only needs v2, but some
+            // installers and file managers still look for the old v1 kind.
+            enableV1Signing = true
+            enableV2Signing = true
+            enableV3Signing = true
         }
     }
     buildTypes {
@@ -37,6 +42,10 @@ android {
     }
     kotlinOptions { jvmTarget = "17" }
     lint { abortOnError = false }
+
+    // Store the ML Kit libraries compressed. The phone unpacks them once at
+    // install. This cuts the download from about 56 MB to about 30 MB.
+    packaging { jniLibs { useLegacyPackaging = true } }
 }
 
 dependencies {
