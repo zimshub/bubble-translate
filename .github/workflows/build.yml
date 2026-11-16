@@ -29,6 +29,15 @@ jobs:
       - name: Rename the APK
         run: cp app/build/outputs/apk/debug/app-debug.apk BubbleTranslate.apk
 
+      # Google's own checks: is the signature valid, and can Android read
+      # the app's description? If either fails, the phone would call the
+      # app "invalid", so stop here instead of publishing it.
+      - name: Check the APK
+        run: |
+          BT="$ANDROID_HOME/build-tools/$(ls "$ANDROID_HOME/build-tools" | sort -V | tail -1)"
+          "$BT/apksigner" verify --verbose --print-certs BubbleTranslate.apk
+          "$BT/aapt2" dump badging BubbleTranslate.apk | head -20
+
       - uses: actions/upload-artifact@v4
         with:
           name: BubbleTranslate-apk
