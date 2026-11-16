@@ -26,10 +26,11 @@ comics, novels and documents in other languages.
 - 16 Nov 2026: Zim's Samsung said the app was "invalid" on install. Google's
   apksigner and aapt2 (now run by the workflow) found nothing wrong with the
   APK. Version 0.2 compresses native libs (56 MB down to 29 MB) and adds v3
-  signing; the release notes show the expected size and SHA-256. Waiting to
-  hear whether 0.2 installs. If not, get the exact error text and how he
-  downloaded it (browser or app).
-- It has NOT yet run on a phone. Steps 1 to 3 below are done; step 4 is next.
+  signing; the release notes show the expected size and SHA-256. Version 0.2
+  installed fine on his Samsung. The exact cause of the first failure was
+  never pinned down (most likely a broken download of the 56 MB file).
+- Installed but the phone test list below has not been worked through yet.
+  Steps 1 to 3 below are done; step 4 is next.
 - Local copy on Zim's PC: C:\Users\ozumb\BubbleTranslate. That PC has no
   Java, Gradle or Android SDK, so build through GitHub.
 
